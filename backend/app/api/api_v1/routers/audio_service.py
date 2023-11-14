@@ -29,7 +29,7 @@ pipe = pipeline("automatic-speech-recognition",
                 torch_dtype=torch.float32,
                 device=device)
 
-# pipe.model = pipe.model.to_bettertransformer()
+pipe.model = pipe.model.to_bettertransformer()
 
 
 @r.post("/transcribe")
@@ -42,6 +42,8 @@ async def transcribe_audio(file: UploadFile):
         audio_path = f"audio_files/{'test'}.wav"
         
         logger.info(f"{audio_path}")
+        # transcript = "Consumer prices were unchanged from the prior month in October as a drop in oil prices dragged down headline inflation while core inflation rose at the slowest annual pace in September 2021, according to the latest data from the Bureau of Labor statistic released Tuesday morning. The Consumer Price Index, or CPI, showed prices rose 0% over last month and 3.2% over the prior year in October, a declaration from September's 0.4% monthly increase and 3.7% annual gain in prices. Economists had expected prices to increase 0.1% month over month and 3.3% year over year, according to data from Bloomberg."
+        # return {"transcript": transcript}
 
         content = await file.read()
         # Create a temporary file to store the PDF content
@@ -66,7 +68,7 @@ async def transcribe_audio(file: UploadFile):
         return {"message": f"Error: {str(e)}"}
 
 
-@r.post("/transcribe1")
+@r.post("/transcribe/chunk")
 async def transcribe_audio(file: UploadFile):
     try:
         # Create a directory to store audio files if not exists
@@ -76,7 +78,8 @@ async def transcribe_audio(file: UploadFile):
         audio_path = f"audio_files/{'test'}.wav"
         
         logger.info(f"{audio_path}")
-
+        
+        
         content = await file.read()
         # Create a temporary file to store the PDF content
         with tempfile.NamedTemporaryFile(dir="audio_files", suffix=".wav", delete=False) as temp_file:
