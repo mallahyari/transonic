@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Flex, Typography, Card, Row, Col } from 'antd';
 import { AudioRecorder, useAudioRecorder } from 'react-audio-voice-recorder';
-import { PlusOutlined } from '@ant-design/icons';
+import { PlusOutlined, CopyOutlined } from '@ant-design/icons';
 import { TwitterShareButton } from 'react-share';
 import { SocialIcon } from 'react-social-icons';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 const { Title, Paragraph } = Typography;
 
@@ -130,7 +131,7 @@ export default function AudioComponent() {
           }}
         >
           <Col span={12}>
-            <Card title="Note title" bordered={true} loading={isTranscribing}>
+            <Card title="Transcript" bordered={true} loading={isTranscribing}>
               <Paragraph>{transcript}</Paragraph>
             </Card>
           </Col>
@@ -149,7 +150,7 @@ export default function AudioComponent() {
           >
             <Col span={12}>
               <Card
-                title="Note title"
+                title={<CardTitle transcript={transcript} />}
                 bordered={true}
                 hoverable={true}
                 actions={[
@@ -173,3 +174,16 @@ export default function AudioComponent() {
     </>
   );
 }
+
+const CardTitle = ({ transcript }: { transcript: string }) => {
+  const handleCopy = () => {};
+  return (
+    <Row gutter={16} justify="end">
+      <Col>
+        <CopyToClipboard text={transcript} onCopy={() => handleCopy()}>
+          <Button icon={<CopyOutlined />}>Copy</Button>
+        </CopyToClipboard>
+      </Col>
+    </Row>
+  );
+};

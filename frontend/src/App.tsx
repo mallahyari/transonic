@@ -3,23 +3,41 @@ import './App.css';
 
 import { Flex, Typography } from 'antd';
 import AudioComponent from './components/AudioComponent';
+import {
+  ClerkProvider,
+  SignedIn,
+  SignedOut,
+  UserButton,
+  useUser,
+  RedirectToSignIn,
+} from '@clerk/clerk-react';
+import Dashboard from './components/Dashboard';
 
-const { Title, Paragraph } = Typography;
+if (!process.env.REACT_APP_CLERK_PUBLISHABLE_KEY) {
+  throw 'Missing Publishable Key';
+}
+
+const clerkPubKey = process.env.REACT_APP_CLERK_PUBLISHABLE_KEY;
+
+function PublicPage() {
+  return (
+    <>
+      <h1>Public page</h1>
+      <a href="/protected">Go to protected page</a>
+    </>
+  );
+}
 
 function App() {
   return (
-    <div className="App">
-      <Flex vertical>
-        <div style={{ margin: 'auto', textAlign: 'center' }}>
-          <Title> Convert your thoughts into Tweets Fast!</Title>
-          <Paragraph style={{ fontSize: '18px' }}>
-            Start recording your thoughts. Please note that you can only record
-            30 seconds every time.
-          </Paragraph>
-        </div>
-        <AudioComponent />
-      </Flex>
-    </div>
+    <ClerkProvider publishableKey={clerkPubKey}>
+      <SignedIn>
+        <Dashboard />
+      </SignedIn>
+      <SignedOut>
+        <RedirectToSignIn />
+      </SignedOut>
+    </ClerkProvider>
   );
 }
 
