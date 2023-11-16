@@ -12,6 +12,7 @@
 /build
 
 backend/**/__pycache__/
+backend/audio_files
 
 
 # misc

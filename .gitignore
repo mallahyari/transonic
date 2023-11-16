@@ -1,0 +1,8 @@
+backend/**/__pycache__/
+backend/audio_files
+
+
+backend/**/.DS_Store
+.DS_Store
+.env.local
+.env
