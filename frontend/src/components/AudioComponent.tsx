@@ -119,9 +119,9 @@ export default function AudioComponent() {
                 icon={<PlusOutlined />}
                 onClick={uploadAudioFile}
                 loading={isTranscribing}
-                style={{ width: '150px' }}
+                style={{ width: '250px' }}
               >
-                Create Note
+                Turn into a Tweet
               </Button>
             </Flex>
           )}
