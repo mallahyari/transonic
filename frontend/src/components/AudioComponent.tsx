@@ -30,7 +30,7 @@ export default function AudioComponent() {
     setIsTranscribing(true);
 
     try {
-      const response = await fetch(`${BACKEND_URL}/transcribe`, {
+      const response = await fetch(`${BACKEND_URL}/api/v1/transcribe`, {
         method: 'POST',
         body: formData,
       });
