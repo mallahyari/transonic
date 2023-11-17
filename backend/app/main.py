@@ -3,7 +3,6 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from fastapi import Request
 from app.api.api_v1.routers.audio_service import audio_router
-from config import settings
 import typing as t
 import uvicorn
 
