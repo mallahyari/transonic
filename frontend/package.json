@@ -12,6 +12,7 @@
     "@types/node": "^16.18.61",
     "@types/react": "^18.2.37",
     "@types/react-dom": "^18.2.15",
+    "@vercel/analytics": "^1.1.1",
     "antd": "^5.11.1",
     "react": "^18.2.0",
     "react-audio-voice-recorder": "^2.2.0",
