@@ -8,6 +8,8 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 const { Title, Paragraph } = Typography;
 
+const BACKEND_URL = 'https://moments.fly.dev';
+
 export default function AudioComponent() {
   const [recordedBlob, setRecordedBlob] = useState<Blob | null>(null);
   const [transcript, setTranscript] = useState<string>('');
@@ -28,7 +30,7 @@ export default function AudioComponent() {
     setIsTranscribing(true);
 
     try {
-      const response = await fetch('http://localhost:8000/api/v1/transcribe', {
+      const response = await fetch(`${BACKEND_URL}/transcribe`, {
         method: 'POST',
         body: formData,
       });
