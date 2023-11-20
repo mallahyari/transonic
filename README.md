@@ -1,1 +1,20 @@
-# transonic
+# Moments to Tweets
+
+This is a fun app that let you turn your thoughts into tweets in a jiffy!
+
+You simply talk to the mic and it records your voice, transcribes it and turn it into a tweet with a click of a button. You can run the ASR Whisper models either locally or via OpenAI API. By default it's using the API, but if you'd like to use the models locally, check `audio_service_local.py` file. There are two different approaches to run the model locally using two different python libraries: `fast-whisper` and `insanely-fast-whisper`. Pick whichever that suits you or faster on your system, and update the API end point accordingly.
+
+## Tech Stack
+
+### Frontend
+
+- App logic: React + [ant design](https://ant.design/)
+- Authentication: [Clerk](https://clerk.com/)
+- Deployment: [Vercel](https://vercel.com/)
+
+You can skip the authentication if you run it locally. Nevertheless, if you would like to set up _authentication_, you'll need a `CLERK_PUBLISHABLE_KEY`.
+
+### Backend
+
+- App logic: FastAPI
+- Deployment: [Fly.io](https://fly.io/)
