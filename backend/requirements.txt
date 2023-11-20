@@ -1,3 +1,5 @@
 fastapi[all]
 openai
 structlog
+# faster-whisper
+# insanely-fast-whisper
