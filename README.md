@@ -51,4 +51,4 @@ OPENAI_API_KEY=
 
 ## Discussion and Contribution
 
-If you have any comment or feedback, please don't hesitate to use the Discussions section and open a new topic. You can also reach out directly via [Linkedin](https://www.linkedin.com/in/mehdiallahyari/) or [Twitter](https://twitter.com/MehdiAllahyari).
+If you have any comment or feedback, please don't hesitate to reach out directly or use the Discussions section and open a new topic. You can also reach out directly via [Linkedin](https://www.linkedin.com/in/mehdiallahyari/) or [Twitter](https://twitter.com/MehdiAllahyari).
