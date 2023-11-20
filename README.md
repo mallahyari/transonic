@@ -6,7 +6,9 @@ You simply talk to the mic and it records your voice, transcribes it and turn it
 
 
 
-https://github.com/mallahyari/transonic/assets/28068313/e6f9f6fe-09c7-4829-9f77-b1093bcebf58
+
+https://github.com/mallahyari/transonic/assets/28068313/1523e65b-b266-4ac5-a576-c32e7483583a
+
 
 
 
