@@ -13,6 +13,11 @@ audio_router = r = APIRouter()
 
 @r.post("/transcribe")
 async def transcribe_audio(file: UploadFile):
+    """Transcribe the audio file using OpenAI Whisper models
+
+    Args:
+        file (UploadFile): Audio file to be transcribed.
+    """
     try:
         # Create a directory to store audio files if not exists
         os.makedirs("audio_files", exist_ok=True)

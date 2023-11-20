@@ -1,7 +1,10 @@
-backend/**/__pycache__/
-backend/audio_files
+/backend/**/__pycache__/
+/backend/audio_files
 
+/managed_context
+/test_suite_analysis
 
+.vscode
 backend/**/.DS_Store
 .DS_Store
 .env.local

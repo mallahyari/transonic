@@ -5,10 +5,9 @@ import { PlusOutlined, CopyOutlined } from '@ant-design/icons';
 import { TwitterShareButton } from 'react-share';
 import { SocialIcon } from 'react-social-icons';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
+import { BACKEND_URL } from '../config';
 
 const { Title, Paragraph } = Typography;
-
-const BACKEND_URL = 'https://moments.fly.dev';
 
 export default function AudioComponent() {
   const [recordedBlob, setRecordedBlob] = useState<Blob | null>(null);
@@ -20,7 +19,7 @@ export default function AudioComponent() {
       noiseSuppression: true,
       echoCancellation: true,
     },
-    (err) => console.table(err) // onNotAllowedOrFound
+    (err) => console.table(err)
   );
 
   const uploadAudioFile = async () => {
@@ -38,7 +37,6 @@ export default function AudioComponent() {
       if (response.ok) {
         const transcriptionResult = await response.json();
         setTranscript(transcriptionResult.transcript);
-        // console.log('Transcription Result:', transcriptionResult);
       } else {
         console.error('Failed to transcribe audio.');
       }

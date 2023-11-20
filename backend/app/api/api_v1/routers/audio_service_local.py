@@ -1,17 +1,12 @@
-from fastapi import APIRouter, Depends, HTTPException, status, Response, Request, UploadFile
-from fastapi.responses import StreamingResponse
+from fastapi import APIRouter,  UploadFile
 from app.config import settings
-from app.data_models.schemas import UserQuery
-from typing import List, Dict, Any, Optional, AsyncGenerator
+from transformers import pipeline
+from openai import OpenAI
+from faster_whisper import WhisperModel
 import tempfile
 import structlog
 import os
 import torch
-from transformers import pipeline
-from openai import OpenAI
-
-
-from faster_whisper import WhisperModel
 
 
 
@@ -33,9 +28,17 @@ pipe = pipeline("automatic-speech-recognition",
 
 pipe.model = pipe.model.to_bettertransformer()
 
-
+    
 @r.post("/transcribe")
-async def transcribe_audio(file: UploadFile):
+async def transcribe_audio_local_approach1(file: UploadFile):
+    """Transcribe the audio file locally using fast-whisper library
+
+    Args:
+        file (UploadFile): Audio file
+
+    Returns:
+        json: Transcript of the audio file
+    """
     try:
         # Create a directory to store audio files if not exists
         os.makedirs("audio_files", exist_ok=True)
@@ -44,44 +47,6 @@ async def transcribe_audio(file: UploadFile):
         audio_path = f"audio_files/{'test'}.wav"
         
         logger.info(f"{audio_path}")
-        # transcript = "Consumer prices were unchanged from the prior month in October as a drop in oil prices dragged down headline inflation while core inflation rose at the slowest annual pace in September 2021, according to the latest data from the Bureau of Labor statistic released Tuesday morning. The Consumer Price Index, or CPI, showed prices rose 0% over last month and 3.2% over the prior year in October, a declaration from September's 0.4% monthly increase and 3.7% annual gain in prices. Economists had expected prices to increase 0.1% month over month and 3.3% year over year, according to data from Bloomberg."
-        # return {"transcript": transcript}
-
-        content = await file.read()
-        # Create a temporary file to store the PDF content
-        with tempfile.NamedTemporaryFile(dir="audio_files", suffix=".wav", delete=False) as temp_file:
-            temp_file.write(content)
-            temp_file_path = temp_file.name
-            
-            logger.info(temp_file_path)
-            client = OpenAI(api_key=settings.openai_api_key)
-
-            audio_file= open(temp_file_path, "rb")
-            transcript = client.audio.transcriptions.create(
-            model="whisper-1", 
-            file=audio_file
-)
-            logger.info(f"transcript: {transcript}")
-            return {"transcript": transcript.text,"message": "Audio file received and saved successfully."}
-
-    except Exception as e:
-        # Handle errors and return an appropriate response
-        return {"message": f"Error: {str(e)}"}
-    
-    
-    
-@r.post("/transcribe_local")
-async def transcribe_audio_local(file: UploadFile):
-    try:
-        # Create a directory to store audio files if not exists
-        os.makedirs("audio_files", exist_ok=True)
-
-        # Save the audio file to a unique filename
-        audio_path = f"audio_files/{'test'}.wav"
-        
-        logger.info(f"{audio_path}")
-        # transcript = "Consumer prices were unchanged from the prior month in October as a drop in oil prices dragged down headline inflation while core inflation rose at the slowest annual pace in September 2021, according to the latest data from the Bureau of Labor statistic released Tuesday morning. The Consumer Price Index, or CPI, showed prices rose 0% over last month and 3.2% over the prior year in October, a declaration from September's 0.4% monthly increase and 3.7% annual gain in prices. Economists had expected prices to increase 0.1% month over month and 3.3% year over year, according to data from Bloomberg."
-        # return {"transcript": transcript}
 
         content = await file.read()
         # Create a temporary file to store the PDF content
@@ -106,8 +71,16 @@ async def transcribe_audio_local(file: UploadFile):
         return {"message": f"Error: {str(e)}"}
 
 
-@r.post("/transcribe/chunk")
-async def transcribe_audio(file: UploadFile):
+@r.post("/transcribe/UPDATEPATH")  # UPDATE THE PATH
+async def transcribe_audio_local_approach2(file: UploadFile):
+    """Transcribe the audio file using insanely-fast-whisper library
+
+    Args:
+        file (UploadFile): audio file
+
+    Returns:
+        json: transcript of the file
+    """
     try:
         # Create a directory to store audio files if not exists
         os.makedirs("audio_files", exist_ok=True)

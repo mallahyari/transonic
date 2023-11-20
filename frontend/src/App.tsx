@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import { Analytics } from '@vercel/analytics/react';
-import { Flex, Typography, ConfigProvider } from 'antd';
+import { ConfigProvider } from 'antd';
 import {
   ClerkProvider,
   SignedIn,
@@ -15,15 +15,6 @@ if (!process.env.REACT_APP_CLERK_PUBLISHABLE_KEY) {
 }
 
 const clerkPubKey = process.env.REACT_APP_CLERK_PUBLISHABLE_KEY;
-
-function PublicPage() {
-  return (
-    <>
-      <h1>Public page</h1>
-      <a href="/protected">Go to protected page</a>
-    </>
-  );
-}
 
 function App() {
   return (
