@@ -12,14 +12,14 @@ You simply talk to the mic and it records your voice, transcribes it and turn it
 git clone https://github.com/mallahyari/transonic.git
 ```
 
-2. To run the frontend, go to the `frontend` and run:
+2. To run the frontend, go to the `frontend` directory and run:
 
 ```bash
 npm install
 npm start
 ```
 
-You can skip the authentication if you run it locally. Nevertheless, if you would like to set up _authentication_, you'll need a `CLERK_PUBLISHABLE_KEY`.
+You can skip the authentication if you run it locally. Nevertheless, if you would like to set up _authentication_, you'll need to add your `CLERK_PUBLISHABLE_KEY` to your `.env` file in `frontend` folder.
 
 Additionally, if you tend to run FastAPI backend locally, make sure to update the `BACKEND_URL` inside the `frontend/src/config.ts` to the appropriate url, e.g. `http://localhost:8000`.
 
