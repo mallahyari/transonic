@@ -5,7 +5,7 @@
 /test_suite_analysis
 
 .vscode
-backend/**/.DS_Store
+backend/.DS_Store
 .DS_Store
 .env.local
 .env
