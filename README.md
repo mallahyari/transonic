@@ -2,7 +2,7 @@
 
 This is a fun app that let you turn your thoughts into tweets in a jiffy!
 
-You simply talk to the mic and it records your voice, transcribes it and turn it into a tweet with a click of a button. You can run the ASR Whisper models either locally or via OpenAI API. By default it's using the API, but if you'd like to use the models locally, check `audio_service_local.py` file. There are two different approaches to run the model locally using two different python libraries: `fast-whisper` and `insanely-fast-whisper`. Pick whichever that suits you or faster on your system, and update the API end point accordingly.
+You simply talk to the mic and it records your voice, transcribes it and turn it into a tweet with a click of a button. You can run the ASR Whisper models either locally or via OpenAI API. By default it's using the API, but if you'd like to use the models locally, check `audio_service_local.py` file. There are two different approaches to run the model locally using two different python libraries: `fast-whisper` and `insanely-fast-whisper`. Pick whichever that suits you or faster on your system, and update the FastAPI endpoint/path accordingly.
 
 ## Quick Start
 
